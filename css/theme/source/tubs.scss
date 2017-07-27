@@ -1,0 +1,184 @@
+/**
+ * TU Braunschweig theme for reveal.js. 
+ *
+ * By Tilman Stehr
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// COLORS
+$tuGrey: rgb(221,221,221); 
+$tuRed: rgb(190,30,60);
+$tuYellow: rgb(255, 240, 178);
+
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #000;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$mainFontSize: 1rem;
+$mainFont: Arial, sans-serif;
+$headingFont: Arial, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+$linkColor: $tuRed;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 1.44rem;
+$heading2Size: 1.2em;
+$heading3Size: 1.1em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+$headerHeight: 4.45rem;
+$footerHeight: 3.9rem;
+$footerLineHeight: .1rem;
+
+@mixin slide-bg {
+	background: 
+		url(tubs-res/tubs.svg) bottom 1.4rem left -0.1rem no-repeat,
+		linear-gradient(to bottom, $tuGrey, $tuGrey) no-repeat,
+		linear-gradient(to bottom, $tuRed, $tuRed) bottom 3.9rem left 0 no-repeat,
+		white;
+	background-size: 9.3rem auto, 100% $headerHeight, 100% .1rem, auto;
+}
+
+html {
+	font-size: 22px;
+}
+
+.reveal .slides {
+	text-align: left;
+	background: white;
+	//background: url(title2.png) no-repeat center / contain;
+}
+
+.reveal .slides > section,
+.reveal .slides > section > section {
+	padding: $headerHeight + 1rem 2.2rem 0;
+	height: 100%;
+	box-sizing: border-box;
+	@include slide-bg;
+}
+
+section::before {
+	content: "section::before { content: 'Bla'} im CSS setzen um diesen Text zu ändern";
+	position: absolute;
+	bottom: 3rem;
+	left: 9.5rem;
+	font-size: .6rem;
+}
+
+section::after {
+	content: " ";
+	position: absolute;
+	bottom: .8rem;
+	right: 1rem;
+	width: 10rem;
+	height: 3rem;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: bottom right;
+}
+
+section h1:first-child {
+	position: absolute;
+	top: 2.5rem;
+}
+
+.reveal .slides > section.title,
+.reveal .slides > section > section.title {
+	$pad: 1.65rem;
+	background: 
+		url(tubs-res/tubs.svg) top 3.8rem left 0 no-repeat,
+		url(tubs-res/defaulttitlepicture.jpg) top 7.5rem left $pad no-repeat,
+		linear-gradient(to bottom, $tuYellow, $tuYellow) bottom 3rem left $pad no-repeat,
+		linear-gradient(to bottom, $tuRed, $tuRed) bottom 1.5rem left $pad no-repeat,
+		white;
+	background-size: 13rem auto, calc(100% - #{$pad*2}) auto, calc(100% - #{$pad*2}) 20rem, calc(100% - #{$pad*2}) 1.5rem;
+	padding: 0;
+
+	&::before {
+		display: none;
+	}
+
+	&::after {
+		bottom: auto;
+		width: 13rem;
+		height: 3.7rem;
+		top: 2rem;
+		right: $pad;
+		background-position: top right;
+	}
+
+	h1 {
+		position: absolute;
+		top: auto;
+		left: 4.3rem;
+		bottom: 7.3rem;
+	}
+
+	h2 {
+		position: absolute;
+		top: auto;
+		left: 4.3rem;
+		bottom: 4.8rem;
+		font-size: 1rem;
+		font-weight: normal;
+	}
+
+	.image {
+		position: absolute;
+		top: 7.5rem;
+		left: $pad;
+		width: calc(100% - #{$pad*2});
+		height: 14.5rem;
+		background-size: cover;
+		background-position: center;
+	}
+
+	.image::after {
+		content: '';
+		position: absolute;
+		top: -3.8rem;
+		left: -$pad;
+		width: 13rem;
+		height: 5rem;
+		background: url(tubs-res/tubs.svg) no-repeat 100%;
+		background-size: contain;
+	}
+}
+
+.reveal .progress {
+	background: $tuGrey;
+}
+
+// text styles
+
+.reveal {
+	ul {
+		list-style-type: square;
+	}
+}
